@@ -6,6 +6,7 @@ namespace Vote.Interfaces
     public interface IVoterService
     {
         public Task<ActionResult<Voter>> GetVoter(int id);
+        public Task<ActionResult<IEnumerable<Voter>>> GetVoters();
         public Task<ActionResult<int>> AddVoter(string name);
     }
 }

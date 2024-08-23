@@ -29,5 +29,9 @@ namespace Vote.Services
             };
             return await _candidateRepository.AddCandidate(candidate);
         }
+        public async Task<ActionResult<IEnumerable<Candidate>>> GetCandidates()
+        {
+            return await _candidateRepository.GetCandidates();
+        }
     }
 }

@@ -20,6 +20,11 @@ namespace Vote.Repositories
             return await _context.Candidates.Where(x => x.Id == id).SingleAsync();
         }
 
+        public async Task<ActionResult<IEnumerable<Candidate>>> GetCandidates()
+        {
+            return await _context.Candidates.ToListAsync();
+        }
+
         public async Task<ActionResult<int>> AddCandidate(Candidate candidate)
         {
             _context.Candidates.Add(candidate);
