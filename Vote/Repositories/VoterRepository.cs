@@ -19,9 +19,14 @@ namespace Vote.Repositories
             return await _context.Voters.Where(x => x.Id == id).SingleAsync();
         }
 
-        public async Task<ActionResult<int>> AddVoter(Voter candidate)
+        public async Task<ActionResult<IEnumerable<Voter>>> GetVoters()
         {
-            _context.Voters.Add(candidate);
+            return await _context.Voters.ToListAsync();
+        }
+
+        public async Task<ActionResult<int>> AddVoter(Voter voter)
+        {
+            _context.Voters.Add(voter);
             var response = await _context.SaveChangesAsync();
             return response;
         }

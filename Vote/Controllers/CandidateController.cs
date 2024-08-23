@@ -16,10 +16,16 @@ namespace Vote.Controllers
             _candidateService = candidateService;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Candidate>> GetCandidate(int id)
         {
             return await _candidateService.GetCandidate(id);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Candidate>>> GetCandidates()
+        {
+            return await _candidateService.GetCandidates();
         }
 
         [HttpPost]

@@ -8,23 +8,29 @@ namespace Vote.Controllers
     [Route("api/[controller]")]
     public class VoterController : ControllerBase
     {
-        private IVoterService _candidateService;
+        private IVoterService _voterService;
 
-        public VoterController(IVoterService candidateService)
+        public VoterController(IVoterService voterService)
         {
-            _candidateService = candidateService;
+            _voterService = voterService;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Voter>> GetVoter(int id)
+        {
+            return await _voterService.GetVoter(id);
         }
 
         [HttpGet]
-        public async Task<ActionResult<Voter>> GetVoter(int id)
+        public async Task<ActionResult<IEnumerable<Voter>>> GetVoters()
         {
-            return await _candidateService.GetVoter(id);
+            return await _voterService.GetVoters();
         }
 
         [HttpPost]
         public async Task<ActionResult<int>> AddVoter(string name)
         {
-            return await _candidateService.AddVoter(name);
+            return await _voterService.AddVoter(name);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Vote.Interfaces
     {
         public Task<ActionResult<Candidate>> GetCandidate(int id);
         public Task<ActionResult<int>> AddCandidate(Candidate candidate);
+        public Task<ActionResult<IEnumerable<Candidate>>> GetCandidates();
 
     }
 }

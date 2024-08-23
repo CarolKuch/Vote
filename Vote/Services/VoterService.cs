@@ -6,15 +6,21 @@ namespace Vote.Services
 {
     public class VoterService : IVoterService
     {
-        private IVoterRepository _candidateRepository;
+        private IVoterRepository _voterRepository;
 
         public VoterService(IVoterRepository repository)
         {
-            _candidateRepository = repository;
+            _voterRepository = repository;
         }
+
         public async Task<ActionResult<Voter>> GetVoter(int id)
         {
-            return await _candidateRepository.GetVoter(id);
+            return await _voterRepository.GetVoter(id);
+        }
+
+        public async Task<ActionResult<IEnumerable<Voter>>> GetVoters()
+        {
+            return await _voterRepository.GetVoters();
         }
 
         public async Task<ActionResult<int>> AddVoter(string name)
@@ -23,7 +29,7 @@ namespace Vote.Services
             {
                 Name = name
             };
-            return await _candidateRepository.AddVoter(candidate);
+            return await _voterRepository.AddVoter(candidate);
         }
     }
 }
