@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyModel;
 using Vote.Data;
+using Vote.Interfaces;
+using Vote.Repositories;
+using Vote.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +18,10 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DafaultConnection"));
 });
+builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
+builder.Services.AddScoped<ICandidateService, CandidateService>();
+builder.Services.AddScoped<IVoterRepository, VoterRepository>();
+builder.Services.AddScoped<IVoterService, VoterService>();
 
 var app = builder.Build();
 
@@ -28,6 +36,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+    app.MapControllers();
 
 app.Run();
