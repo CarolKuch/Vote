@@ -1,0 +1,11 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Vote.Entities;
+
+namespace Vote.Interfaces
+{
+    public interface IVoterService
+    {
+        public Task<ActionResult<Voter>> GetVoter(int id);
+        public Task<ActionResult<int>> AddVoter(string name);
+    }
+}
