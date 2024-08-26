@@ -18,12 +18,15 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DafaultConnection"));
 });
+
+builder.Services.AddCors();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 builder.Services.AddScoped<ICandidateService, CandidateService>();
 builder.Services.AddScoped<IVoterRepository, VoterRepository>();
 builder.Services.AddScoped<IVoterService, VoterService>();
 
 var app = builder.Build();
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
