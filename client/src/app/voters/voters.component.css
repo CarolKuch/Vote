@@ -1,0 +1,19 @@
+h2
+{
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.add-button
+{
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.container {
+  width: 30vw;
+  height: 30vw;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
